@@ -183,7 +183,8 @@ def gradient_descent(d, l, iterations, alpha):
         w1, b1, w2, b2 = update_params(w1, b1, w2, b2, dw1, db1, dw2, db2, alpha)
         if iteration % 10 == 0:
             print(f"Iteration: {iteration} - Loss: {get_loss(a2, l)} - Accuracy: {get_accuracy(l, get_predictions(a2))}")
-        if get_accuracy(l, get_predictions(a2)) >= 0.95:
+        if  abs(get_accuracy(l, get_predictions(a2)) - 1) < 0.01:
+            print(f"Final iteration: {iteration} - Loss: {get_loss(a2, l)} - Accuracy: {get_accuracy(l, get_predictions(a2))}")
             break
     return w1, b1, w2, b2
 
@@ -221,7 +222,8 @@ def get_loss(a2, l):
         - Loss
     """
     epsilon = 1e-10  # Small value to avoid log(0)
-    return np.sum(-np.log(a2 + epsilon) * one_hot_encode(l))
+    one_hot_labels = one_hot_encode(l)
+    return np.sum(-np.log(a2 + epsilon) * one_hot_labels)
 
 def make_predictions(w1, b1, w2, b2, d):
     """
