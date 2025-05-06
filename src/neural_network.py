@@ -182,9 +182,9 @@ def gradient_descent(d, l, iterations, alpha):
         dw1, db1, dw2, db2 = backward(z1, a1, z2, a2, w2, d, l)
         w1, b1, w2, b2 = update_params(w1, b1, w2, b2, dw1, db1, dw2, db2, alpha)
         if iteration % 10 == 0:
-            print(f"Iteration: {iteration} - Loss: {get_loss(a2, l)} - Accuracy: {get_accuracy(l, get_predictions(a2))}")
-        if  abs(get_accuracy(l, get_predictions(a2)) - 1) < 0.01:
-            print(f"Final iteration: {iteration} - Loss: {get_loss(a2, l)} - Accuracy: {get_accuracy(l, get_predictions(a2))}")
+            print(f"Iteration: {iteration} - Loss: {get_loss(a2, l):.10f} - Accuracy: {get_accuracy(l, get_predictions(a2)):.3f}")
+        if  abs(get_accuracy(l, get_predictions(a2)) - 1) < 0.03:
+            print(f"Final iteration: {iteration} - Loss: {get_loss(a2, l):.10f} - Accuracy: {get_accuracy(l, get_predictions(a2)):.3f}")
             break
     return w1, b1, w2, b2
 
