@@ -11,7 +11,7 @@ The training labels is a 1000x1 vector, where each element is the label of the c
 '''
 
 # Read the data
-data = pd.read_csv('data/train.csv')
+data = pd.read_csv('../data/train.csv')
 # Turn panda data into numpy array
 data = np.array(data)
 
