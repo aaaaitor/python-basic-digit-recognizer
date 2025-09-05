@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -10,8 +11,23 @@ The network is trained using the training data and labels. The training data is 
 The training labels is a 1000x1 vector, where each element is the label of the corresponding image in the training data.
 '''
 
-# Read the data
-data = pd.read_csv('../data/train.csv')
+
+# Get the directory of the current script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Construct the path to the data file
+data_foldername = 'data'
+data_filename   = 'train.csv'
+data_path = os.path.join(current_dir, '..', data_foldername, data_filename)
+
+# Check if the file exists
+if not os.path.exists(data_path):
+    print(f"Error: Could not find train.csv at {data_path}")
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Script directory: {current_dir}")
+    print(f"Looking for file at: {os.path.abspath(data_path)}")
+    raise FileNotFoundError(f"train.csv not found at {data_path}")
+
+data = pd.read_csv(data_path)
 # Turn panda data into numpy array
 data = np.array(data)
 
