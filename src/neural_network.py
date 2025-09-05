@@ -13,11 +13,11 @@ The training labels is a 1000x1 vector, where each element is the label of the c
 
 
 # Get the directory of the current script
-current_dir = os.path.dirname(os.path.abspath(__file__))
+current_dir     = os.path.dirname(os.path.abspath(__file__))
 # Construct the path to the data file
 data_foldername = 'data'
 data_filename   = 'train.csv'
-data_path = os.path.join(current_dir, '..', data_foldername, data_filename)
+data_path       = os.path.join(current_dir, '..', data_foldername, data_filename)
 
 # Check if the file exists
 if not os.path.exists(data_path):
@@ -37,7 +37,7 @@ np.random.shuffle(data)
 
 # Split data into development and testing sets
 # Developing set: 1000 samples
-development_data = data[0:1000].T
+development_data        = data[0:1000].T
 development_data_labels = development_data[0]
 development_data_pixels = development_data[1:n]
 # Testing set: 1000 samples
@@ -50,9 +50,9 @@ def init_params():
     Initialize weights and bias.
     """
     weight_1 = np.random.normal(size=(10, 784)) * np.sqrt(1./(784)) * 0.05
-    bias_1   = np.random.normal(size=(10, 1)) * np.sqrt(1./(10))    * 0.05
-    weight_2 = np.random.normal(size=(10, 10)) * np.sqrt(1./(20))   * 0.05
-    bias_2   = np.random.normal(size=(10, 1)) * np.sqrt(1./(784))   * 0.05
+    bias_1   = np.random.normal(size=(10, 1))   * np.sqrt(1./(10))  * 0.05
+    weight_2 = np.random.normal(size=(10, 10))  * np.sqrt(1./(20))  * 0.05
+    bias_2   = np.random.normal(size=(10, 1))   * np.sqrt(1./(784)) * 0.05
     return weight_1, bias_1, weight_2, bias_2
 
 def ReLU(x):
